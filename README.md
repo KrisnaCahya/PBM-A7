@@ -8,7 +8,7 @@
 - Edwin Tri Maulana (202410102028)
 - Krisna Cahya Pratama (202410102078)
 
-# 🔮My Passions
+# 🔮Our Project
 - 🎆 **Rental Camera Mobile adalah aplikasi untuk menyediakan penyewaan camera secara online/mobile untuk membantu seseorang yang ingin memiliki hasil foto yang bagus namun belom memiliki dana untuk membeli camera sendiri**
 - 🎓 **Universitas Jember - Teknologi Infomasi 2020**
 
