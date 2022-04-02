@@ -8,6 +8,7 @@ class halamanutama extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         backgroundColor: Color.fromARGB(255, 75, 203, 220),
         body: SafeArea(
@@ -19,33 +20,7 @@ class halamanutama extends StatelessWidget {
               'assets/images/RCM_Logo.png',
               height: 150,
             )),
-            Container(
-                alignment: Alignment.center,
-                child: Align(
-                  alignment: Alignment.center,
-                  child: Text(
-                    "",
-                    style: TextStyle(
-                        fontSize: 30,
-                        color: Colors.white,
-                        fontFamily: "Poppins"),
-                  ),
-                )),
-            Container(
-                padding: const EdgeInsets.fromLTRB(0, 50, 0, 0),
-                alignment: Alignment.center,
-                child: Align(
-                  alignment: Alignment.center,
-                  child: Text(
-                    "",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                      fontFamily: "Poppins",
-                      color: Colors.white,
-                    ),
-                  ),
-                )),
+            SizedBox(height: 100),
             Container(
               padding: const EdgeInsets.all(15),
               child: ElevatedButton(

@@ -21,6 +21,7 @@ class Login extends StatelessWidget {
                 'Login To Your Account',
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
               ),
+              SizedBox(height: 60),
               Container(
                 margin: const EdgeInsets.only(top: 15, bottom: 15),
                 decoration: BoxDecoration(boxShadow: [
@@ -74,7 +75,7 @@ class Login extends StatelessWidget {
                     ),
                     suffixIcon: Icon(
                       Icons.remove_red_eye,
-                      color: Colors.grey,
+                      color: color1,
                     ),
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10)),
