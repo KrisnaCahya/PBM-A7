@@ -1,0 +1,166 @@
+import 'package:pbma7/style/style.dart';
+import 'package:flutter/material.dart';
+import 'package:pbma7/halaman_login.dart';
+
+class register extends StatelessWidget {
+  const register({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      backgroundColor: Color.fromARGB(255, 75, 203, 220),
+      body: SafeArea(
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 40),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'REGISTER',
+                style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
+              ),
+              Text('Sign Up For Free',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400)),
+              Container(
+                margin: const EdgeInsets.only(bottom: 15, top: 15),
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: Color.fromRGBO(90, 108, 234, 0.07),
+                      blurRadius: 50,
+                      spreadRadius: 0,
+                      offset: Offset(12, 26),
+                    ),
+                  ],
+                ),
+                child: TextField(
+                  decoration: InputDecoration(
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: borderRadius1,
+                      borderSide: BorderSide(color: Colors.white),
+                    ),
+                    fillColor: Colors.white,
+                    filled: true,
+                    hintText: 'yourusername',
+                    labelText: 'Username',
+                    prefixIcon: Icon(
+                      Icons.person,
+                      color: color1,
+                    ),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                margin: const EdgeInsets.only(bottom: 15),
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: Color.fromRGBO(90, 108, 234, 0.07),
+                      blurRadius: 50,
+                      spreadRadius: 0,
+                      offset: Offset(12, 26),
+                    ),
+                  ],
+                ),
+                child: TextField(
+                  decoration: InputDecoration(
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: borderRadius1,
+                      borderSide: BorderSide(color: Colors.white),
+                    ),
+                    fillColor: Colors.white,
+                    filled: true,
+                    hintText: 'example@krisstudio.com',
+                    labelText: 'Email',
+                    prefixIcon: Icon(
+                      Icons.email,
+                      color: color1,
+                    ),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                margin: const EdgeInsets.only(bottom: 15),
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: Color.fromRGBO(90, 108, 234, 0.07),
+                      blurRadius: 50,
+                      spreadRadius: 0,
+                      offset: Offset(12, 26),
+                    ),
+                  ],
+                ),
+                child: TextField(
+                  decoration: InputDecoration(
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: borderRadius1,
+                      borderSide: BorderSide(color: Colors.white),
+                    ),
+                    fillColor: Colors.white,
+                    filled: true,
+                    hintText: '@_yourpassword',
+                    labelText: 'Password',
+                    prefixIcon: Icon(
+                      Icons.lock,
+                      color: color1,
+                    ),
+                    suffixIcon: Icon(
+                      Icons.remove_red_eye,
+                      color: color1,
+                    ),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                margin: const EdgeInsets.only(top: 10, bottom: 10),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 7, horizontal: 20),
+                //width: double.infinity,
+                decoration: BoxDecoration(
+                    borderRadius: borderRadius1,
+                    color: color1,
+                    boxShadow: [boxshadow1]),
+                child: TextButton(
+                  child: const Text(
+                    'Create Account',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  onPressed: () {},
+                ),
+              ),
+              TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) {
+                          return Login();
+                        },
+                      ),
+                    );
+                  },
+                  child: Text(
+                    'Already have an account?',
+                    style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.white),
+                  )),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}

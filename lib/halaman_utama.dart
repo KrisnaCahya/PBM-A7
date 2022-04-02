@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:pbma7/halaman_daftar.dart';
+import 'package:pbma7/halaman_login.dart';
 
 class halamanutama extends StatelessWidget {
   const halamanutama({Key? key}) : super(key: key);
@@ -47,7 +49,16 @@ class halamanutama extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(15),
               child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) {
+                          return Login();
+                        },
+                      ),
+                    );
+                  },
                   style: ElevatedButton.styleFrom(
                       minimumSize: Size(300, 50),
                       shape: RoundedRectangleBorder(
@@ -60,7 +71,16 @@ class halamanutama extends StatelessWidget {
             ),
             Center(
               child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) {
+                          return register();
+                        },
+                      ),
+                    );
+                  },
                   style: ElevatedButton.styleFrom(
                       minimumSize: Size(300, 50),
                       shape: RoundedRectangleBorder(
