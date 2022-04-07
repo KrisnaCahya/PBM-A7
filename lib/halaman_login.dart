@@ -1,3 +1,4 @@
+import 'package:pbma7/navbar.dart';
 import 'package:pbma7/style/style.dart';
 import 'package:pbma7/halaman_daftar.dart';
 import 'package:flutter/material.dart';
@@ -95,7 +96,16 @@ class Login extends StatelessWidget {
                       'Login',
                       style: TextStyle(color: Colors.white),
                     ),
-                    onPressed: () {}),
+                    onPressed: () {
+                      Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) {
+                          return Navbar();
+                        },
+                      ),
+                    );
+                    }),
               ),
               TextButton(
                   onPressed: () {
@@ -108,7 +118,7 @@ class Login extends StatelessWidget {
                       ),
                     );
                   },
-                  child: Text(
+                  child: const Text(
                     'create account',
                     style: TextStyle(
                         fontSize: 14,

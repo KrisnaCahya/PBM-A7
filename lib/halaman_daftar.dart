@@ -1,3 +1,4 @@
+import 'package:pbma7/navbar.dart';
 import 'package:pbma7/style/style.dart';
 import 'package:flutter/material.dart';
 import 'package:pbma7/halaman_login.dart';
@@ -25,7 +26,7 @@ class register extends StatelessWidget {
               SizedBox(height: 60),
               Container(
                 margin: const EdgeInsets.only(bottom: 15, top: 15),
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   boxShadow: [
                     BoxShadow(
                       color: Color.fromRGBO(90, 108, 234, 0.07),
@@ -57,7 +58,7 @@ class register extends StatelessWidget {
               ),
               Container(
                 margin: const EdgeInsets.only(bottom: 15),
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   boxShadow: [
                     BoxShadow(
                       color: Color.fromRGBO(90, 108, 234, 0.07),
@@ -89,7 +90,7 @@ class register extends StatelessWidget {
               ),
               Container(
                 margin: const EdgeInsets.only(bottom: 15),
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   boxShadow: [
                     BoxShadow(
                       color: Color.fromRGBO(90, 108, 234, 0.07),
@@ -137,7 +138,16 @@ class register extends StatelessWidget {
                     'Create Account',
                     style: TextStyle(color: Colors.white),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) {
+                          return Navbar();
+                        },
+                      ),
+                    );
+                  },
                 ),
               ),
               TextButton(
@@ -151,7 +161,7 @@ class register extends StatelessWidget {
                       ),
                     );
                   },
-                  child: Text(
+                  child: const Text(
                     'Already have an account?',
                     style: TextStyle(
                         fontSize: 14,
