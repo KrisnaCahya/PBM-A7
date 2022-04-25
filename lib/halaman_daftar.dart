@@ -10,7 +10,7 @@ class register extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: Color.fromARGB(255, 75, 203, 220),
+      backgroundColor: color1,
       body: SafeArea(
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 40),

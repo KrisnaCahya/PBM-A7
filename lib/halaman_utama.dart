@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pbma7/halaman_daftar.dart';
 import 'package:pbma7/halaman_login.dart';
+import 'package:pbma7/style/style.dart';
 
 class halamanutama extends StatelessWidget {
   const halamanutama({Key? key}) : super(key: key);
@@ -10,7 +11,7 @@ class halamanutama extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        backgroundColor: Color.fromARGB(255, 75, 203, 220),
+        backgroundColor: color1,
         body: SafeArea(
             child: Column(
           children: [
@@ -38,7 +39,7 @@ class halamanutama extends StatelessWidget {
                       minimumSize: Size(300, 50),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(50)),
-                      primary: Color.fromARGB(255, 30, 187, 221)),
+                      primary: Colors.blue),
                   child: Text(
                     "LOG IN",
                     style: TextStyle(fontSize: 30, fontFamily: "Poppins"),

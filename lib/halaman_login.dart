@@ -9,7 +9,7 @@ class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 75, 203, 220),
+      backgroundColor: color1,
       body: SafeArea(
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 25),
@@ -89,7 +89,7 @@ class Login extends StatelessWidget {
                     const EdgeInsets.symmetric(vertical: 7, horizontal: 20),
                 decoration: BoxDecoration(
                     borderRadius: borderRadius1,
-                    color: color1,
+                    color: Color.fromRGBO(33, 150, 243, 1),
                     boxShadow: [boxshadow1]),
                 child: TextButton(
                     child: const Text(

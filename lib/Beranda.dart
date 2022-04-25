@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'style/style.dart';
 
 class Beranda extends StatefulWidget {
   const Beranda({Key? key}) : super(key: key);
@@ -17,7 +18,7 @@ class _BerandaState extends State<Beranda> {
           const SizedBox(),
           Container(
             height: 276,
-            color: Colors.lightBlue,
+            color: color1,
             width: double.infinity,
             padding: const EdgeInsets.fromLTRB(5, 60, 5, 0),
             child: Column(

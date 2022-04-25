@@ -3,6 +3,7 @@ import 'package:pbma7/Beranda.dart';
 import 'package:pbma7/akun.dart';
 import 'package:pbma7/chat.dart';
 import 'package:pbma7/pemesanan.dart';
+import 'style/style.dart';
 
 
 class Navbar extends StatefulWidget {
@@ -36,26 +37,26 @@ class NavbarState extends State<Navbar> {
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
+        items:  <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home_outlined),
+            icon: const Icon(Icons.home_outlined),
             label: 'Beranda',
-            backgroundColor: Colors.lightBlue,
+            backgroundColor: color1,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart_outlined),
+            icon: const Icon(Icons.shopping_cart_outlined),
             label: 'Pemesanan',
-            backgroundColor: Colors.lightBlue,
+            backgroundColor: color1,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.chat_outlined),
+            icon: const Icon(Icons.chat_outlined),
             label: 'Chat',
-            backgroundColor: Colors.lightBlue,
+            backgroundColor: color1,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.account_circle_outlined),
+            icon: const Icon(Icons.account_circle_outlined),
             label: 'Akun',
-            backgroundColor: Colors.lightBlue,
+            backgroundColor: color1,
           ),
         ],
         currentIndex: _selectedIndex,
