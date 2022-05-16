@@ -111,181 +111,196 @@ class _CariLokasiState extends State<CariLokasi> {
               ),
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
-                child: Container(
-                  width: double.infinity,
-                  height: 110,
-                  decoration: BoxDecoration(
-                    color: Color(0xFF1EBBDD),
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: Stack(
-                    children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(20),
-                        child: Image.asset(
-                          'assets/images/surabaya.png',
-                          width: double.infinity,
-                          height: 110,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      const Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
-                        child: Text(
-                          'Surabaya',
-                          style: TextStyle(
-                            fontFamily: 'Poppins',
-                            fontSize: 18,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
+                child: InkWell(
+                  onTap: () async {},
+                  child: Container(
+                    width: double.infinity,
+                    height: 110,
+                    decoration: BoxDecoration(
+                      color: Color(0xFF1EBBDD),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Stack(
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(20),
+                          child: Image.asset(
+                            'assets/images/surabaya.png',
+                            width: double.infinity,
+                            height: 110,
+                            fit: BoxFit.cover,
                           ),
                         ),
-                      ),
-                    ],
+                        const Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                          child: Text(
+                            'Surabaya',
+                            style: TextStyle(
+                              fontFamily: 'Poppins',
+                              fontSize: 18,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
-                child: Container(
-                  width: double.infinity,
-                  height: 110,
-                  decoration: BoxDecoration(
-                    color: Color(0xFF1EBBDD),
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: Stack(
-                    children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(20),
-                        child: Image.asset(
-                          'assets/images/jember.png',
-                          width: double.infinity,
-                          height: 110,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      const Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
-                        child: Text(
-                          'Jember',
-                          style: TextStyle(
-                            fontFamily: 'Poppins',
-                            fontSize: 18,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
+                child: InkWell(
+                  onTap: () async {},
+                  child: Container(
+                    width: double.infinity,
+                    height: 110,
+                    decoration: BoxDecoration(
+                      color: Color(0xFF1EBBDD),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Stack(
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(20),
+                          child: Image.asset(
+                            'assets/images/jember.png',
+                            width: double.infinity,
+                            height: 110,
+                            fit: BoxFit.cover,
                           ),
                         ),
-                      ),
-                    ],
+                        const Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                          child: Text(
+                            'Jember',
+                            style: TextStyle(
+                              fontFamily: 'Poppins',
+                              fontSize: 18,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
-                child: Container(
-                  width: double.infinity,
-                  height: 110,
-                  decoration: BoxDecoration(
-                    color: Color(0xFF1EBBDD),
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: Stack(
-                    children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(20),
-                        child: Image.asset(
-                          'assets/images/banyuwangi.png',
-                          width: double.infinity,
-                          height: 110,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      const Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
-                        child: Text(
-                          'Banyuwangi',
-                          style: TextStyle(
-                            fontFamily: 'Poppins',
-                            fontSize: 18,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
+                child: InkWell(
+                  onTap: () async {},
+                  child: Container(
+                    width: double.infinity,
+                    height: 110,
+                    decoration: BoxDecoration(
+                      color: Color(0xFF1EBBDD),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Stack(
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(20),
+                          child: Image.asset(
+                            'assets/images/banyuwangi.png',
+                            width: double.infinity,
+                            height: 110,
+                            fit: BoxFit.cover,
                           ),
                         ),
-                      ),
-                    ],
+                        const Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                          child: Text(
+                            'Banyuwangi',
+                            style: TextStyle(
+                              fontFamily: 'Poppins',
+                              fontSize: 18,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
-                child: Container(
-                  width: double.infinity,
-                  height: 110,
-                  decoration: BoxDecoration(
-                    color: Color(0xFF1EBBDD),
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: Stack(
-                    children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(20),
-                        child: Image.asset(
-                          'assets/images/mojokerto.png',
-                          width: double.infinity,
-                          height: 110,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      const Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
-                        child: Text(
-                          'Mojokerto',
-                          style: TextStyle(
-                            fontFamily: 'Poppins',
-                            fontSize: 18,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
+                child: InkWell(
+                  onTap: () async {},
+                  child: Container(
+                    width: double.infinity,
+                    height: 110,
+                    decoration: BoxDecoration(
+                      color: Color(0xFF1EBBDD),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Stack(
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(20),
+                          child: Image.asset(
+                            'assets/images/mojokerto.png',
+                            width: double.infinity,
+                            height: 110,
+                            fit: BoxFit.cover,
                           ),
                         ),
-                      ),
-                    ],
+                        const Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                          child: Text(
+                            'Mojokerto',
+                            style: TextStyle(
+                              fontFamily: 'Poppins',
+                              fontSize: 18,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
-                child: Container(
-                  width: double.infinity,
-                  height: 110,
-                  decoration: BoxDecoration(
-                    color: Color(0xFF1EBBDD),
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: Stack(
-                    children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(20),
-                        child: Image.asset(
-                          'assets/images/lumajang.png',
-                          width: double.infinity,
-                          height: 110,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      const Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
-                        child: Text(
-                          'Lumajang',
-                          style: TextStyle(
-                            fontFamily: 'Poppins',
-                            fontSize: 18,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
+                child: InkWell(
+                  onTap: () async {},
+                  child: Container(
+                    width: double.infinity,
+                    height: 110,
+                    decoration: BoxDecoration(
+                      color: Color(0xFF1EBBDD),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Stack(
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(20),
+                          child: Image.asset(
+                            'assets/images/lumajang.png',
+                            width: double.infinity,
+                            height: 110,
+                            fit: BoxFit.cover,
                           ),
                         ),
-                      ),
-                    ],
+                        const Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                          child: Text(
+                            'Lumajang',
+                            style: TextStyle(
+                              fontFamily: 'Poppins',
+                              fontSize: 18,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
