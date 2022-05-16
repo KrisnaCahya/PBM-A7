@@ -1,5 +1,9 @@
+import 'dart:io';
+import 'dart:async';
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:pbma7/navbar.dart';
+import 'package:image_picker/image_picker.dart';
 
 class ChatPribadi extends StatefulWidget {
   const ChatPribadi({Key? key}) : super(key: key);
@@ -9,6 +13,15 @@ class ChatPribadi extends StatefulWidget {
 }
 
 class _ChatPribadiState extends State<ChatPribadi> {
+  File? _image;
+
+  Future pickImage(ImageSource source) async {
+    final image = await ImagePicker().pickImage(source: source);
+    if (image == null) return;
+    final imageTemp = File(image.path);
+    setState(() => this._image = imageTemp);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,9 +43,7 @@ class _ChatPribadiState extends State<ChatPribadi> {
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(
-                          builder: (context) => Navbar()
-                        ),
+                        MaterialPageRoute(builder: (context) => Navbar()),
                       );
                     },
                     child: const Icon(
@@ -129,7 +140,11 @@ class _ChatPribadiState extends State<ChatPribadi> {
                         color: Colors.black,
                         size: 25,
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        showModalBottomSheet(
+                            context: context,
+                            builder: ((Builder) => bottomSheet()));
+                      },
                     ),
                   ),
                 ],
@@ -139,5 +154,43 @@ class _ChatPribadiState extends State<ChatPribadi> {
         ),
       ),
     );
+  }
+
+  Widget bottomSheet() {
+    return Container(
+        height: 100.0,
+        width: MediaQuery.of(context).size.width,
+        margin: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+        child: Column(
+          children: <Widget>[
+            Text(
+              "Kirim Foto Menggunakan :",
+              style: TextStyle(
+                  fontFamily: "Poppins",
+                  fontWeight: FontWeight.w500,
+                  fontSize: 24),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                TextButton.icon(
+                  icon: Icon(Icons.camera_alt_sharp),
+                  onPressed: () => pickImage(ImageSource.camera),
+                  style: TextButton.styleFrom(primary: Colors.black),
+                  label: Text("Kamera"),
+                ),
+                TextButton.icon(
+                  icon: Icon(Icons.broken_image_outlined),
+                  onPressed: () => pickImage(ImageSource.gallery),
+                  style: TextButton.styleFrom(primary: Colors.black),
+                  label: Text("Galeri"),
+                )
+              ],
+            )
+          ],
+        ));
   }
 }
