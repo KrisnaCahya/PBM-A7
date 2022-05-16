@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pbma7/cari_lokasi.dart';
 import 'package:pbma7/pesancam.dart';
 import 'style/style.dart';
 
@@ -45,6 +46,14 @@ class _BerandaState extends State<Beranda> {
                     height: 50.0,
                   ),
                   TextField(
+                    onTap: () {
+                      Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => CariLokasi(),
+                      ),
+                    );
+                    },
                     decoration: InputDecoration(
                       fillColor: Colors.white,
                       filled: true,

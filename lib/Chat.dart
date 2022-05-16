@@ -33,7 +33,6 @@ class _ChatState extends State<Chat> {
               TextFormField(
                 decoration: InputDecoration(
                   labelText: 'Cari Pesan',
-                  hintText: '[Some hint text...]',
                   enabledBorder: OutlineInputBorder(
                     borderSide: const BorderSide(
                       color: Colors.black,
@@ -68,118 +67,118 @@ class _ChatState extends State<Chat> {
                   decoration: BoxDecoration(
                     border: Border.all(color: Color(0xFF1EBBDD), width: 2),
                   ),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(5, 5, 5, 5),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Container(
-                              width: 50,
-                              height: 50,
-                              clipBehavior: Clip.antiAlias,
-                              decoration: const BoxDecoration(
-                                shape: BoxShape.circle,
-                              ),
-                              child: const Image(
-                                image:
-                                    AssetImage("assets/images/profilpict.png"),
-                                width: 60,
-                                height: 60,
-                              ),
-                            ),
-                            const Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
-                              child: Text(
-                                'Hilwa',
-                                textAlign: TextAlign.start,
-                                style: TextStyle(
-                                  fontFamily: 'Poppins',
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(5, 5, 5, 5),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Container(
+                                width: 50,
+                                height: 50,
+                                decoration: const BoxDecoration(
+                                  shape: BoxShape.circle,
+                                ),
+                                child: const Image(
+                                  image: AssetImage(
+                                      "assets/images/profilpict.png"),
+                                  width: 60,
+                                  height: 60,
                                 ),
                               ),
-                            ),
-                            Expanded(
-                              child: Align(
-                                alignment: AlignmentDirectional(1, 0),
-                                child: IconButton(
-                                  icon: const Icon(
-                                    Icons.navigate_next,
-                                    color: Colors.black,
-                                    size: 30,
+                              const Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
+                                child: Text(
+                                  'Hilwa',
+                                  textAlign: TextAlign.start,
+                                  style: TextStyle(
+                                    fontFamily: 'Poppins',
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold,
                                   ),
-                                  onPressed: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (_) {
-                                          return ChatPribadi();
-                                        },
-                                      ),
-                                    );
-                                  },
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(5, 5, 5, 5),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Container(
-                              width: 50,
-                              height: 50,
-                              clipBehavior: Clip.antiAlias,
-                              decoration: const BoxDecoration(
-                                shape: BoxShape.circle,
-                              ),
-                              child: const Image(
-                                image:
-                                    AssetImage("assets/images/profilpict2.png"),
-                                width: 60,
-                                height: 60,
-                              ),
-                            ),
-                            const Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
-                              child: Text(
-                                'Jell',
-                                style: TextStyle(
-                                  fontFamily: 'Poppins',
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              child: Align(
-                                alignment: AlignmentDirectional(1, 0),
-                                child: IconButton(
-                                  icon: const Icon(
-                                    Icons.navigate_next,
-                                    color: Colors.black,
-                                    size: 30,
+                              Expanded(
+                                child: Align(
+                                  alignment: AlignmentDirectional(1, 0),
+                                  child: IconButton(
+                                    icon: const Icon(
+                                      Icons.navigate_next,
+                                      color: Colors.black,
+                                      size: 30,
+                                    ),
+                                    onPressed: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (_) {
+                                            return ChatPribadi();
+                                          },
+                                        ),
+                                      );
+                                    },
                                   ),
-                                  onPressed: () {},
                                 ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(5, 5, 5, 5),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Container(
+                                width: 50,
+                                height: 50,
+                                decoration: const BoxDecoration(
+                                  shape: BoxShape.circle,
+                                ),
+                                child: const Image(
+                                  image: AssetImage(
+                                      "assets/images/profilpict2.png"),
+                                  width: 60,
+                                  height: 60,
+                                ),
+                              ),
+                              const Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
+                                child: Text(
+                                  'Jell',
+                                  style: TextStyle(
+                                    fontFamily: 'Poppins',
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                child: Align(
+                                  alignment: AlignmentDirectional(1, 0),
+                                  child: IconButton(
+                                    icon: const Icon(
+                                      Icons.navigate_next,
+                                      color: Colors.black,
+                                      size: 30,
+                                    ),
+                                    onPressed: () {},
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
+              )
             ],
           ),
         ),
