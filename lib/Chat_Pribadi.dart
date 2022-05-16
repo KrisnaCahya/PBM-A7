@@ -171,7 +171,7 @@ class _ChatPribadiState extends State<ChatPribadi> {
                   fontSize: 24),
             ),
             SizedBox(
-              height: 20,
+              height: 15,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,

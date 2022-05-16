@@ -2,14 +2,14 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-class MapLokasi extends StatefulWidget {
-  const MapLokasi({Key? key}) : super(key: key);
+class LokasiBanyuwangi extends StatefulWidget {
+  const LokasiBanyuwangi({Key? key}) : super(key: key);
 
   @override
-  _MapLokasiState createState() => _MapLokasiState();
+  _LokasiBanyuwangiState createState() => _LokasiBanyuwangiState();
 }
 
-class _MapLokasiState extends State<MapLokasi> {
+class _LokasiBanyuwangiState extends State<LokasiBanyuwangi> {
   late final Completer<GoogleMapController> _controller = Completer();
   final Set<Marker> _markers = {};
   final LatLng _posisiBanyuwangi = LatLng(-8.36351432, -245.85438859);

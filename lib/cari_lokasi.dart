@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:pbma7/navbar.dart';
 import 'package:pbma7/maps.dart';
+import 'package:pbma7/findlocation.dart';
 
 class CariLokasi extends StatefulWidget {
   const CariLokasi({Key? key}) : super(key: key);
@@ -90,7 +91,7 @@ class _CariLokasiState extends State<CariLokasi> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => MapLokasi(),
+                            builder: (context) => FindLocation(),
                           ),
                         );
                       },
@@ -190,7 +191,14 @@ class _CariLokasiState extends State<CariLokasi> {
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                 child: InkWell(
-                  onTap: () async {},
+                  onTap: () async {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => LokasiBanyuwangi(),
+                      ),
+                    );
+                  },
                   child: Container(
                     width: double.infinity,
                     height: 110,
