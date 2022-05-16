@@ -1,5 +1,7 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:pbma7/navbar.dart';
+import 'package:pbma7/maps.dart';
 
 class CariLokasi extends StatefulWidget {
   const CariLokasi({Key? key}) : super(key: key);
@@ -85,7 +87,12 @@ class _CariLokasiState extends State<CariLokasi> {
                         size: 30,
                       ),
                       onPressed: () {
-                        print('IconButton pressed ...');
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => MapLokasi(),
+                          ),
+                        );
                       },
                     ),
                   ],
