@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'dart:async';
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:pbma7/navbar.dart';
 import 'package:image_picker/image_picker.dart';
@@ -163,14 +162,14 @@ class _ChatPribadiState extends State<ChatPribadi> {
         margin: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
         child: Column(
           children: <Widget>[
-            Text(
+            const Text(
               "Kirim Foto Menggunakan :",
               style: TextStyle(
                   fontFamily: "Poppins",
                   fontWeight: FontWeight.w500,
                   fontSize: 24),
             ),
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
             Row(

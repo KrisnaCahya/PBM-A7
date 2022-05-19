@@ -131,7 +131,7 @@ class register extends StatelessWidget {
                 //width: double.infinity,
                 decoration: BoxDecoration(
                     borderRadius: borderRadius1,
-                    color: color1,
+                    color: Color.fromRGBO(33, 150, 243, 1),
                     boxShadow: [boxshadow1]),
                 child: TextButton(
                   child: const Text(
