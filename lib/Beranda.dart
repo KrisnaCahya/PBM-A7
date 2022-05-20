@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pbma7/cari_lokasi.dart';
-import 'package:pbma7/maps.dart';
+import 'package:pbma7/lokasi_banyuwangi.dart';
 import 'package:pbma7/pesancam.dart';
 import 'style/style.dart';
 

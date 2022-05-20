@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:pbma7/navbar.dart';
-import 'package:pbma7/maps.dart';
+import 'package:pbma7/lokasi_banyuwangi.dart';
 import 'package:pbma7/findlocation.dart';
 
 class CariLokasi extends StatefulWidget {
