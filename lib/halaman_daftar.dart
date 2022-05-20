@@ -139,14 +139,26 @@ class register extends StatelessWidget {
                     style: TextStyle(color: Colors.white),
                   ),
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) {
-                          return Navbar();
-                        },
-                      ),
-                    );
+                    showDialog(
+                        context: context,
+                        builder: (context) => AlertDialog(
+                              actions: [
+                                TextButton(
+                                    onPressed: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (_) {
+                                            return Navbar();
+                                          },
+                                        ),
+                                      );
+                                    },
+                                    child: Text('Oke'))
+                              ],
+                              title: Text('SUKSES'),
+                              content: Text('Pendaftaran Akun Berhasil'),
+                            ));
                   },
                 ),
               ),
