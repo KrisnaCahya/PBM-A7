@@ -1,6 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:pbma7/Akun.dart';
 import 'package:pbma7/halaman_utama.dart';
+import 'package:pbma7/navbar.dart';
 
 class Pengaturan extends StatefulWidget {
   const Pengaturan({Key? key}) : super(key: key);
@@ -36,21 +38,44 @@ class _PengaturanState extends State<Pengaturan> {
                 ),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
-                  children: const [
-                    Icon(
-                      Icons.chevron_left,
-                      color: Colors.white,
-                      size: 24,
-                    ),
-                    Text(
-                      'Pengaturan',
-                      style: TextStyle(
-                        fontFamily: 'Poppins',
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) {
+                              return Navbar();
+                            },
+                          ),
+                        );
+                      },
+                      child: const Icon(
+                        Icons.chevron_left,
                         color: Colors.white,
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
+                        size: 24,
                       ),
                     ),
+                    InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) {
+                                return Navbar();
+                              },
+                            ),
+                          );
+                        },
+                        child: const Text(
+                          'Pengaturan',
+                          style: TextStyle(
+                            fontFamily: 'Poppins',
+                            color: Colors.white,
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        )),
                   ],
                 ),
               ),
@@ -116,14 +141,13 @@ class _PengaturanState extends State<Pengaturan> {
                 trailing: IconButton(
                     highlightColor: Colors.grey,
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (_) {
-                            return halamanutama();
-                          },
-                        ),
-                      );
+                      FirebaseAuth.instance.signOut().then((value) {
+                        print("Signed Out");
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => halamanutama()));
+                      });
                     },
                     icon: const Icon(
                       Icons.arrow_forward_ios_rounded,
