@@ -1,11 +1,19 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:pbma7/navbar.dart';
 import 'package:pbma7/style/style.dart';
 import 'package:pbma7/halaman_daftar.dart';
 import 'package:flutter/material.dart';
 
-class Login extends StatelessWidget {
+class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
 
+  @override
+  State<Login> createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
+  TextEditingController ctrlEmail = TextEditingController();
+  TextEditingController ctrlPassword = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,6 +41,7 @@ class Login extends StatelessWidget {
                       offset: Offset(12, 26))
                 ]),
                 child: TextField(
+                  controller: ctrlEmail,
                   decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
                       borderRadius: borderRadius1,
@@ -61,6 +70,7 @@ class Login extends StatelessWidget {
                       offset: Offset(12, 26))
                 ]),
                 child: TextField(
+                  controller: ctrlPassword,
                   decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
                       borderRadius: borderRadius1,
@@ -97,14 +107,18 @@ class Login extends StatelessWidget {
                       style: TextStyle(color: Colors.white),
                     ),
                     onPressed: () {
-                      Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) {
-                          return Navbar();
-                        },
-                      ),
-                    );
+                      FirebaseAuth.instance
+                          .signInWithEmailAndPassword(
+                              email: ctrlEmail.text,
+                              password: ctrlPassword.text)
+                          .then((value) {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Navbar()));
+                      }).onError((error, stackTrace) {
+                        print("Error ${error.toString()}");
+                      });
                     }),
               ),
               TextButton(

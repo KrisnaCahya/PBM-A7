@@ -2,10 +2,13 @@ import 'package:pbma7/navbar.dart';
 import 'package:pbma7/style/style.dart';
 import 'package:flutter/material.dart';
 import 'package:pbma7/halaman_login.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class register extends StatelessWidget {
-  const register({Key? key}) : super(key: key);
-
+  register({Key? key}) : super(key: key);
+  TextEditingController ctrlEmail = TextEditingController();
+  TextEditingController ctrlPassword = TextEditingController();
+  TextEditingController ctrlUsername = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,6 +40,7 @@ class register extends StatelessWidget {
                   ],
                 ),
                 child: TextField(
+                  controller: ctrlUsername,
                   decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
                       borderRadius: borderRadius1,
@@ -69,6 +73,7 @@ class register extends StatelessWidget {
                   ],
                 ),
                 child: TextField(
+                  controller: ctrlEmail,
                   decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
                       borderRadius: borderRadius1,
@@ -101,6 +106,7 @@ class register extends StatelessWidget {
                   ],
                 ),
                 child: TextField(
+                  controller: ctrlPassword,
                   decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
                       borderRadius: borderRadius1,
@@ -138,27 +144,17 @@ class register extends StatelessWidget {
                     'Create Account',
                     style: TextStyle(color: Colors.white),
                   ),
-                  onPressed: () {
-                    showDialog(
-                        context: context,
-                        builder: (context) => AlertDialog(
-                              actions: [
-                                TextButton(
-                                    onPressed: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (_) {
-                                            return Navbar();
-                                          },
-                                        ),
-                                      );
-                                    },
-                                    child: Text('Oke'))
-                              ],
-                              title: Text('SUKSES'),
-                              content: Text('Pendaftaran Akun Berhasil'),
-                            ));
+                  onPressed: () { FirebaseAuth.instance
+                      .createUserWithEmailAndPassword(
+                          email: ctrlEmail.text,
+                          password:ctrlPassword.text)
+                      .then((value) {
+                    print("Created New Account");
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Navbar()));
+                  }).onError((error, stackTrace) {
+                    print("Error ${error.toString()}");
+                  });
                   },
                 ),
               ),

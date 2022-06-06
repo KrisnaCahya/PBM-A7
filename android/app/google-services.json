@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "791799191094",
+    "project_id": "pbma7-e5716",
+    "storage_bucket": "pbma7-e5716.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:791799191094:android:68f1ed1c78815b97d72a97",
+        "android_client_info": {
+          "package_name": "com.example.pbma7"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "791799191094-a3de4v8t96v208get5kg7sf3sksknvgi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAz9TaWqoCIdKWYOyfm7vRheUdp1pfX1Jo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "791799191094-a3de4v8t96v208get5kg7sf3sksknvgi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
