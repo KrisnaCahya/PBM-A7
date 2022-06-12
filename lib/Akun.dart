@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pbma7/data_pribadi.dart';
 import 'package:pbma7/pengaturan.dart';
 import 'package:pbma7/style/style.dart';
 
@@ -71,7 +72,14 @@ class _AkunState extends State<Akun> {
           tileColor: color1,
           trailing: IconButton(
               highlightColor: Colors.grey,
-              onPressed: () {},
+              onPressed: () {Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) {
+                          return DataPribadi();
+                        },
+                      ),
+                    );},
               icon: const Icon(Icons.arrow_forward_ios_rounded,
                   color: Colors.white)),
         ),
