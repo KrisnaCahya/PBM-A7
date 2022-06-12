@@ -3,14 +3,9 @@ import 'package:pbma7/konfirmasi_pembayaran.dart';
 import 'package:pbma7/navbar.dart';
 import 'package:pbma7/pesancam.dart';
 
-class Order extends StatefulWidget {
+class Order extends StatelessWidget {
   const Order({Key? key}) : super(key: key);
 
-  @override
-  State<Order> createState() => _OrderState();
-}
-
-class _OrderState extends State<Order> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

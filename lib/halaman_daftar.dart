@@ -1,20 +1,39 @@
+import 'package:email_validator/email_validator.dart';
 import 'package:pbma7/navbar.dart';
 import 'package:pbma7/style/style.dart';
 import 'package:flutter/material.dart';
 import 'package:pbma7/halaman_login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class register extends StatelessWidget {
-  register({Key? key}) : super(key: key);
+class register extends StatefulWidget {
+  const register({Key? key}) : super(key: key);
+
+  @override
+  State<register> createState() => _registerState();
+}
+
+class _registerState extends State<register> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   TextEditingController ctrlEmail = TextEditingController();
   TextEditingController ctrlPassword = TextEditingController();
   TextEditingController ctrlUsername = TextEditingController();
+  bool isHiddenPassword = true;
+
+  void _tooglePasswordView() {
+    setState(() {
+      isHiddenPassword = !isHiddenPassword;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: color1,
-      body: SafeArea(
+      body: Form(
+        autovalidateMode: AutovalidateMode.onUserInteraction,
+        key: _formKey,
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 40),
           child: Column(
@@ -39,8 +58,14 @@ class register extends StatelessWidget {
                     ),
                   ],
                 ),
-                child: TextField(
+                child: TextFormField(
                   controller: ctrlUsername,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'username cannot be empty';
+                    }
+                    return null;
+                  },
                   decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
                       borderRadius: borderRadius1,
@@ -72,8 +97,12 @@ class register extends StatelessWidget {
                     ),
                   ],
                 ),
-                child: TextField(
+                child: TextFormField(
                   controller: ctrlEmail,
+                  validator: (email) =>
+                      email != null && !EmailValidator.validate(email)
+                          ? 'enter valid email'
+                          : null,
                   decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
                       borderRadius: borderRadius1,
@@ -105,8 +134,16 @@ class register extends StatelessWidget {
                     ),
                   ],
                 ),
-                child: TextField(
+                child: TextFormField(
+                  obscureText: isHiddenPassword,
                   controller: ctrlPassword,
+                  validator: (value) {
+                    if (value != null && value.length < 6) {
+                      return 'enter min 6 char';
+                    } else {
+                      return null;
+                    }
+                  },
                   decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
                       borderRadius: borderRadius1,
@@ -114,15 +151,18 @@ class register extends StatelessWidget {
                     ),
                     fillColor: Colors.white,
                     filled: true,
-                    hintText: '@_yourpassword',
+                    hintText: 'password123',
                     labelText: 'Password',
                     prefixIcon: Icon(
                       Icons.lock,
                       color: color1,
                     ),
-                    suffixIcon: Icon(
-                      Icons.remove_red_eye,
-                      color: color1,
+                    suffixIcon: InkWell(
+                      onTap: _tooglePasswordView,
+                      child: Icon(
+                        Icons.remove_red_eye,
+                        color: color1,
+                      ),
                     ),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
@@ -144,17 +184,21 @@ class register extends StatelessWidget {
                     'Create Account',
                     style: TextStyle(color: Colors.white),
                   ),
-                  onPressed: () { FirebaseAuth.instance
-                      .createUserWithEmailAndPassword(
-                          email: ctrlEmail.text,
-                          password:ctrlPassword.text)
-                      .then((value) {
-                    print("Created New Account");
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Navbar()));
-                  }).onError((error, stackTrace) {
-                    print("Error ${error.toString()}");
-                  });
+                  onPressed: () {
+                    final isValidFrom = _formKey.currentState!.validate();
+                    if (isValidFrom) {
+                      FirebaseAuth.instance
+                          .createUserWithEmailAndPassword(
+                              email: ctrlEmail.text,
+                              password: ctrlPassword.text)
+                          .then((value) {
+                        print("Created New Account");
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => Navbar()));
+                      }).onError((error, stackTrace) {
+                        print("Error");
+                      });
+                    }
                   },
                 ),
               ),

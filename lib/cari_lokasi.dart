@@ -4,14 +4,9 @@ import 'package:pbma7/navbar.dart';
 import 'package:pbma7/lokasi_banyuwangi.dart';
 import 'package:pbma7/findlocation.dart';
 
-class CariLokasi extends StatefulWidget {
+class CariLokasi extends StatelessWidget {
   const CariLokasi({Key? key}) : super(key: key);
 
-  @override
-  State<CariLokasi> createState() => _CariLokasiState();
-}
-
-class _CariLokasiState extends State<CariLokasi> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

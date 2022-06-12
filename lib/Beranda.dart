@@ -4,14 +4,9 @@ import 'package:pbma7/lokasi_banyuwangi.dart';
 import 'package:pbma7/pesancam.dart';
 import 'style/style.dart';
 
-class Beranda extends StatefulWidget {
+class Beranda extends StatelessWidget {
   const Beranda({Key? key}) : super(key: key);
 
-  @override
-  State<Beranda> createState() => _BerandaState();
-}
-
-class _BerandaState extends State<Beranda> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

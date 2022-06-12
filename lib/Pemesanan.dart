@@ -1,13 +1,7 @@
 import 'package:flutter/material.dart';
 
-class Pemesanan extends StatefulWidget {
+class Pemesanan extends StatelessWidget {
   const Pemesanan({Key? key}) : super(key: key);
-
-  @override
-  State<Pemesanan> createState() => _PemesananState();
-}
-
-class _PemesananState extends State<Pemesanan> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

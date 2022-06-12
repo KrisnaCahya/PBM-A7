@@ -1,3 +1,4 @@
+import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:pbma7/navbar.dart';
 import 'package:pbma7/style/style.dart';
@@ -12,13 +13,24 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   TextEditingController ctrlEmail = TextEditingController();
   TextEditingController ctrlPassword = TextEditingController();
-  @override
+  bool isHiddenPassword = true;
+
+  void _tooglePasswordView(){
+    setState(() {
+      isHiddenPassword = !isHiddenPassword;
+    });
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: color1,
-      body: SafeArea(
+      body: Form(
+        autovalidateMode: AutovalidateMode.onUserInteraction,
+        key: _formKey,
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 25),
           child: Column(
@@ -33,15 +45,19 @@ class _LoginState extends State<Login> {
               SizedBox(height: 60),
               Container(
                 margin: const EdgeInsets.only(top: 15, bottom: 15),
-                decoration: BoxDecoration(boxShadow: [
+                decoration: const BoxDecoration(boxShadow: [
                   BoxShadow(
                       color: Color.fromRGBO(90, 108, 234, 0.07),
                       blurRadius: 50,
                       spreadRadius: 0,
                       offset: Offset(12, 26))
                 ]),
-                child: TextField(
+                child: TextFormField(
                   controller: ctrlEmail,
+                  validator: (email) =>
+                      email != null && !EmailValidator.validate(email)
+                          ? 'enter valid email'
+                          : null,
                   decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
                       borderRadius: borderRadius1,
@@ -62,15 +78,23 @@ class _LoginState extends State<Login> {
               ),
               Container(
                 margin: const EdgeInsets.only(top: 15, bottom: 15),
-                decoration: BoxDecoration(boxShadow: [
+                decoration: const BoxDecoration(boxShadow: [
                   BoxShadow(
                       color: Color.fromRGBO(90, 108, 234, 0.07),
                       blurRadius: 50,
                       spreadRadius: 0,
                       offset: Offset(12, 26))
                 ]),
-                child: TextField(
+                child: TextFormField(
+                  obscureText: isHiddenPassword,
                   controller: ctrlPassword,
+                  validator: (value) {
+                    if (value != null && value.length < 6) {
+                      return 'enter min 6 char';
+                    } else {
+                      return null;
+                    }
+                  },
                   decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
                       borderRadius: borderRadius1,
@@ -84,9 +108,12 @@ class _LoginState extends State<Login> {
                       Icons.lock,
                       color: color1,
                     ),
-                    suffixIcon: Icon(
-                      Icons.remove_red_eye,
-                      color: color1,
+                    suffixIcon: InkWell(
+                      onTap: _tooglePasswordView,
+                      child: Icon(
+                        Icons.remove_red_eye,
+                        color: color1,
+                      ),
                     ),
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10)),
@@ -107,18 +134,21 @@ class _LoginState extends State<Login> {
                       style: TextStyle(color: Colors.white),
                     ),
                     onPressed: () {
-                      FirebaseAuth.instance
-                          .signInWithEmailAndPassword(
-                              email: ctrlEmail.text,
-                              password: ctrlPassword.text)
-                          .then((value) {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => Navbar()));
-                      }).onError((error, stackTrace) {
-                        print("Error ${error.toString()}");
-                      });
+                      final isValidFrom = _formKey.currentState!.validate();
+                      if (isValidFrom) {
+                        FirebaseAuth.instance
+                            .signInWithEmailAndPassword(
+                                email: ctrlEmail.text,
+                                password: ctrlPassword.text)
+                            .then((value) {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Navbar()));
+                        }).onError((error, stackTrace) {
+                          print("Error");
+                        });
+                      }
                     }),
               ),
               TextButton(

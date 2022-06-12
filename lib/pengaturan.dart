@@ -4,15 +4,9 @@ import 'package:pbma7/Akun.dart';
 import 'package:pbma7/halaman_utama.dart';
 import 'package:pbma7/navbar.dart';
 
-class Pengaturan extends StatefulWidget {
+
+class Pengaturan extends StatelessWidget {
   const Pengaturan({Key? key}) : super(key: key);
-
-  @override
-  _PengaturanState createState() => _PengaturanState();
-}
-
-class _PengaturanState extends State<Pengaturan> {
-  final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
@@ -41,14 +35,7 @@ class _PengaturanState extends State<Pengaturan> {
                   children: [
                     InkWell(
                       onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (_) {
-                              return Navbar();
-                            },
-                          ),
-                        );
+                         Navigator.of(context).pop('Back');
                       },
                       child: const Icon(
                         Icons.chevron_left,
@@ -141,13 +128,32 @@ class _PengaturanState extends State<Pengaturan> {
                 trailing: IconButton(
                     highlightColor: Colors.grey,
                     onPressed: () {
-                      FirebaseAuth.instance.signOut().then((value) {
-                        print("Signed Out");
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => halamanutama()));
-                      });
+                      showDialog(
+                          context: context,
+                          builder: (context) => AlertDialog(
+                                actions: [
+                                  TextButton(
+                                      onPressed: () {Navigator.pop(context);
+                                      },
+                                      child: Text('Batal')),
+                                  TextButton(
+                                      child: Text('Iya'),
+                                      onPressed: () {
+                                        FirebaseAuth.instance.signOut().then(
+                                          (value) {
+                                            print("Signed Out");
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        halamanutama()));
+                                          },
+                                        );
+                                      }),
+                                ],
+                                title: Text('KONFIRMASI'),
+                                content: Text('Yakin Ingin Logout?'),
+                              ));
                     },
                     icon: const Icon(
                       Icons.arrow_forward_ios_rounded,
