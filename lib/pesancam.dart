@@ -2,17 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:pbma7/navbar.dart';
 import 'package:pbma7/order.dart';
 
-
-
 class PesanCam extends StatelessWidget {
   const PesanCam({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(15, 0, 15, 0),
+        body: SafeArea(
+      child: Padding(
+        padding: EdgeInsetsDirectional.fromSTEB(15, 0, 15, 0),
+        child: SingleChildScrollView(
           child: Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -329,6 +328,6 @@ class PesanCam extends StatelessWidget {
           ),
         ),
       ),
-    );
+    ));
   }
 }

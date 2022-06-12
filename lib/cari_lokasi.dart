@@ -13,6 +13,7 @@ class CariLokasi extends StatelessWidget {
       body: SafeArea(
         child: Padding(
           padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
+          child: SingleChildScrollView(
           child: Column(
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -311,6 +312,7 @@ class CariLokasi extends StatelessWidget {
           ),
         ),
       ),
+      )
     );
   }
 }

@@ -12,9 +12,10 @@ class _ChatState extends State<Chat> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
+        body: SafeArea(
+      child: Padding(
+        padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
+        child: SingleChildScrollView(
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
@@ -183,6 +184,6 @@ class _ChatState extends State<Chat> {
           ),
         ),
       ),
-    );
+    ));
   }
 }
