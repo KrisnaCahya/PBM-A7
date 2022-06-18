@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -14,10 +15,9 @@ class DaftarkanKamera extends StatefulWidget {
 }
 
 class _DaftarkanKameraState extends State<DaftarkanKamera> {
-
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  TextEditingController ctrlAlamat = TextEditingController();
   TextEditingController ctrlNamaCam = TextEditingController();
   TextEditingController ctrlHarga = TextEditingController();
   TextEditingController ctrlDesk = TextEditingController();
@@ -31,11 +31,39 @@ class _DaftarkanKameraState extends State<DaftarkanKamera> {
     final imageTemp = File(image.path);
     setState(() => this.imageFile = imageTemp);
   }
+
+  String? image;
+  String? nama;
+  String? alamat;
+
+  void _getDataFromDatabase() async {
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .get()
+        .then((snapshot) async {
+      if (snapshot.exists) {
+        setState(() {
+          image = snapshot.data()!['userImage'];
+          nama = snapshot.data()!['NamaLengkap'];
+          alamat = snapshot.data()!['Alamat'];
+        });
+      }
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _getDataFromDatabase();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Form(
         key: _formKey,
+        autovalidateMode: AutovalidateMode.onUserInteraction,
         child: Padding(
           padding: const EdgeInsetsDirectional.fromSTEB(8, 30, 8, 0),
           child: SingleChildScrollView(
@@ -90,16 +118,15 @@ class _DaftarkanKameraState extends State<DaftarkanKamera> {
                           GestureDetector(
                             onTap: () {
                               showModalBottomSheet(
-                            context: context,
-                            builder: ((Builder) => bottomSheet()));
+                                  context: context,
+                                  builder: ((Builder) => bottomSheet()));
                             },
                             child: CircleAvatar(
-                              radius: 35,
-                              backgroundImage: imageFile == null ?
-                              const AssetImage(
-                                      "assets/images/addimg.png"):
-                              Image.file(imageFile!).image                            
-                            ),
+                                radius: 35,
+                                backgroundImage: imageFile == null
+                                    ? const AssetImage(
+                                        "assets/images/addimg.png")
+                                    : Image.file(imageFile!).image),
                           ),
                           const Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
@@ -112,38 +139,6 @@ class _DaftarkanKameraState extends State<DaftarkanKamera> {
                           ),
                         ],
                       ),
-                      const Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
-                        child: Text('Alamat Lengkap',
-                            style: TextStyle(
-                                fontFamily: 'Poppins',
-                                fontSize: 14,
-                                color: Colors.black,
-                                fontWeight: FontWeight.w500)),
-                      ),
-                      TextFormField(
-                        controller: ctrlAlamat,
-                        autofocus: true,
-                        obscureText: false,
-                        decoration: InputDecoration(
-                          enabledBorder: UnderlineInputBorder(
-                            borderSide: const BorderSide(
-                              color: Color(0x00000000),
-                              width: 1,
-                            ),
-                            borderRadius: BorderRadius.circular(15),
-                          ),
-                          focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Color(0x00000000),
-                              width: 1,
-                            ),
-                            borderRadius: BorderRadius.circular(15),
-                          ),
-                          filled: true,
-                          fillColor: Color(0xFF9E9E9E),
-                        ),
-                      ),
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                         child: Text('Model Kamera',
@@ -154,6 +149,12 @@ class _DaftarkanKameraState extends State<DaftarkanKamera> {
                                 fontWeight: FontWeight.w500)),
                       ),
                       TextFormField(
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Data tidak boleh kosong';
+                          }
+                          return null;
+                        },
                         controller: ctrlNamaCam,
                         autofocus: true,
                         obscureText: false,
@@ -187,6 +188,13 @@ class _DaftarkanKameraState extends State<DaftarkanKamera> {
                       ),
                       TextFormField(
                         controller: ctrlHarga,
+                        keyboardType: TextInputType.number,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Data tidak boleh kosong';
+                          }
+                          return null;
+                        },
                         autofocus: true,
                         obscureText: false,
                         decoration: InputDecoration(
@@ -218,6 +226,12 @@ class _DaftarkanKameraState extends State<DaftarkanKamera> {
                                 fontWeight: FontWeight.w500)),
                       ),
                       TextFormField(
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Data tidak boleh kosong';
+                          }
+                          return null;
+                        },
                         controller: ctrlDesk,
                         autofocus: true,
                         obscureText: false,
@@ -249,23 +263,32 @@ class _DaftarkanKameraState extends State<DaftarkanKamera> {
                       padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                       child: ElevatedButton(
                           onPressed: () async {
-                            if (imageFile == null){
-                              Fluttertoast.showToast(msg: 'Belum ada gambar yang dimasukkan');
-                              return;
-                            }
-                            try{
-                              final ref = FirebaseStorage.instance.ref().child('cameraImage').child(DateTime.now().toString() +'.jpg');
+                            final isValidFrom =
+                                _formKey.currentState!.validate();
+                            if (isValidFrom) {
+                              final ref = FirebaseStorage.instance
+                                  .ref()
+                                  .child('cameraImages')
+                                  .child(DateTime.now().toString() + '.jpg');
                               await ref.putFile(imageFile!);
                               imageUrl = await ref.getDownloadURL();
-                              FirebaseFirestore.instance.collection('camera').doc('uid').set({
-                                'cameraImage': imageUrl,
+                              FirebaseFirestore.instance
+                                  .collection('camera')
+                                  .doc(DateTime.now().toString())
+                                  .set({
+                                'FotoKamera': imageUrl,
+                                'ModelKamera': ctrlNamaCam.text,
+                                'Harga': ctrlHarga.hashCode,
+                                'Deskripsi': ctrlDesk.text,
+                                'ProfilPict': image,
+                                'NamaToko': nama,
+                                'Alamat': alamat,
                               });
-                              Navigator.canPop(context)? Navigator.pop(context): null;
-                            } catch (error){
-                              Fluttertoast.showToast(msg: error.toString());
+                              print("Created New Account");
+                              Fluttertoast.showToast(
+                                  msg: 'Kamera Berhasil Ditambahkan');
                             }
                           },
-
                           child: Text(
                             'Konfirmasi',
                             style: TextStyle(
@@ -282,7 +305,7 @@ class _DaftarkanKameraState extends State<DaftarkanKamera> {
       ),
     );
   }
-  
+
   Widget bottomSheet() {
     return Container(
         height: 100.0,
