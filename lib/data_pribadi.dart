@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:pbma7/navbar.dart';
 
@@ -51,7 +52,7 @@ class DataPribadi extends StatelessWidget {
                           );
                         },
                         child: const Text(
-                          'Data Pribadi',
+                          'alamat',
                           style: TextStyle(
                             fontFamily: 'Poppins',
                             color: Colors.white,

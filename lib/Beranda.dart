@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pbma7/cari_lokasi.dart';
+import 'package:pbma7/daftarkan_kamera.dart';
 import 'package:pbma7/lokasi_banyuwangi.dart';
 import 'package:pbma7/pesancam.dart';
 import 'style/style.dart';
@@ -111,7 +112,14 @@ class Beranda extends StatelessWidget {
                       borderRadius: BorderRadius.circular(14),
                     ),
                     child: InkWell(
-                        onTap: () {},
+                        onTap: () {Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) {
+                                return DaftarkanKamera();
+                              },
+                            ),
+                          );},
                         child: Column(
                           children: const [
                             Spacer(),

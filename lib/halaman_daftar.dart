@@ -1,4 +1,8 @@
+import 'dart:io';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:email_validator/email_validator.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:pbma7/navbar.dart';
 import 'package:pbma7/style/style.dart';
 import 'package:flutter/material.dart';
@@ -14,11 +18,24 @@ class register extends StatefulWidget {
 
 class _registerState extends State<register> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
   TextEditingController ctrlEmail = TextEditingController();
   TextEditingController ctrlPassword = TextEditingController();
-  TextEditingController ctrlUsername = TextEditingController();
+  TextEditingController ctrlNama = TextEditingController();
+  TextEditingController ctrlNoTelp = TextEditingController();
+  TextEditingController ctrlAlamat = TextEditingController();
   bool isHiddenPassword = true;
+
+  File? imageFile;
+  String? imageUrl;
+
+  Future pickImage(ImageSource source) async {
+    final image = await ImagePicker().pickImage(source: source);
+    if (image == null) return;
+    final imageTemp = File(image.path);
+    setState(() => this.imageFile = imageTemp);
+  }
 
   void _tooglePasswordView() {
     setState(() {
@@ -45,48 +62,29 @@ class _registerState extends State<register> {
               ),
               Text('Sign Up For Free',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400)),
-              SizedBox(height: 60),
-              Container(
-                margin: const EdgeInsets.only(bottom: 15, top: 15),
-                decoration: const BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: Color.fromRGBO(90, 108, 234, 0.07),
-                      blurRadius: 50,
-                      spreadRadius: 0,
-                      offset: Offset(12, 26),
-                    ),
-                  ],
-                ),
-                child: TextFormField(
-                  controller: ctrlUsername,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'username cannot be empty';
-                    }
-                    return null;
-                  },
-                  decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: borderRadius1,
-                      borderSide: BorderSide(color: Colors.white),
-                    ),
-                    fillColor: Colors.white,
-                    filled: true,
-                    hintText: 'yourusername',
-                    labelText: 'Username',
-                    prefixIcon: Icon(
-                      Icons.person,
-                      color: color1,
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
-                ),
+              SizedBox(height: 30),
+              GestureDetector(
+                onTap: () {
+                  showModalBottomSheet(
+                      context: context, builder: ((Builder) => bottomSheet()));
+                },
+                child: CircleAvatar(
+                    radius: 35,
+                    backgroundImage: imageFile == null
+                        ? const AssetImage("assets/images/addimg.png")
+                        : Image.file(imageFile!).image),
+              ),
+              const Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
+                child: Text('Foto Profil',
+                    style: TextStyle(
+                        fontFamily: 'Poppins',
+                        fontSize: 14,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w500)),
               ),
               Container(
-                margin: const EdgeInsets.only(bottom: 15),
+                margin: const EdgeInsets.only(bottom: 15, top: 15),
                 decoration: const BoxDecoration(
                   boxShadow: [
                     BoxShadow(
@@ -171,6 +169,130 @@ class _registerState extends State<register> {
                 ),
               ),
               Container(
+                margin: const EdgeInsets.only(bottom: 15),
+                decoration: const BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: Color.fromRGBO(90, 108, 234, 0.07),
+                      blurRadius: 50,
+                      spreadRadius: 0,
+                      offset: Offset(12, 26),
+                    ),
+                  ],
+                ),
+                child: TextFormField(
+                  controller: ctrlNama,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Nama tidak boleh kosong';
+                    }
+                    if (value != null && value.length < 6) {
+                      return 'Minimal 6 huruf';
+                    }
+                    return null;
+                  },
+                  decoration: InputDecoration(
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: borderRadius1,
+                      borderSide: BorderSide(color: Colors.white),
+                    ),
+                    fillColor: Colors.white,
+                    filled: true,
+                    labelText: 'Nama Lengkap',
+                    prefixIcon: Icon(
+                      Icons.person,
+                      color: color1,
+                    ),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                margin: const EdgeInsets.only(bottom: 15),
+                decoration: const BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: Color.fromRGBO(90, 108, 234, 0.07),
+                      blurRadius: 50,
+                      spreadRadius: 0,
+                      offset: Offset(12, 26),
+                    ),
+                  ],
+                ),
+                child: TextFormField(
+                  controller: ctrlNoTelp,
+                  keyboardType: TextInputType.number,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'No Telepon tidak boleh kosong';
+                    }
+                    if (value != null && value.length < 6) {
+                      return 'Minimal 6 huruf';
+                    }
+                    return null;
+                  },
+                  decoration: InputDecoration(
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: borderRadius1,
+                      borderSide: BorderSide(color: Colors.white),
+                    ),
+                    fillColor: Colors.white,
+                    filled: true,
+                    labelText: 'No Telepon',
+                    prefixIcon: Icon(
+                      Icons.phone,
+                      color: color1,
+                    ),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                margin: const EdgeInsets.only(bottom: 15),
+                decoration: const BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: Color.fromRGBO(90, 108, 234, 0.07),
+                      blurRadius: 50,
+                      spreadRadius: 0,
+                      offset: Offset(12, 26),
+                    ),
+                  ],
+                ),
+                child: TextFormField(
+                  controller: ctrlAlamat,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Alamat tidak boleh kosong';
+                    }
+                    if (value != null && value.length < 6) {
+                      return 'Minimal 6 huruf';
+                    }
+                    return null;
+                  },
+                  decoration: InputDecoration(
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: borderRadius1,
+                      borderSide: BorderSide(color: Colors.white),
+                    ),
+                    fillColor: Colors.white,
+                    filled: true,
+                    labelText: 'Alamat',
+                    prefixIcon: Icon(
+                      Icons.home,
+                      color: color1,
+                    ),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                ),
+              ),
+              Container(
                 margin: const EdgeInsets.only(top: 10, bottom: 10),
                 padding:
                     const EdgeInsets.symmetric(vertical: 7, horizontal: 20),
@@ -184,20 +306,41 @@ class _registerState extends State<register> {
                     'Create Account',
                     style: TextStyle(color: Colors.white),
                   ),
-                  onPressed: () {
+                  onPressed: () async {
                     final isValidFrom = _formKey.currentState!.validate();
                     if (isValidFrom) {
-                      FirebaseAuth.instance
-                          .createUserWithEmailAndPassword(
-                              email: ctrlEmail.text,
-                              password: ctrlPassword.text)
-                          .then((value) {
-                        print("Created New Account");
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => Navbar()));
-                      }).onError((error, stackTrace) {
-                        print("Error");
-                      });
+                      final ref = FirebaseStorage.instance
+                          .ref()
+                          .child('userImages')
+                          .child(DateTime.now().toString() + '.jpg');
+                      await ref.putFile(imageFile!);
+                      imageUrl = await ref.getDownloadURL();
+                      await _auth.createUserWithEmailAndPassword(
+                          email: ctrlEmail.text, password: ctrlPassword.text);
+                      final User? user = _auth.currentUser;
+                      final _uid = user!.uid;
+                      FirebaseFirestore.instance
+                          .collection('users')
+                          .doc(_uid)
+                          .set({
+                            'id':_uid,
+                            'NamaLengkap':ctrlNama.text,
+                            'NoTelepon': ctrlNoTelp.text,
+                            'Alamat':ctrlAlamat.text,
+                            'userImage': imageUrl,
+                          });
+                          Navigator.canPop(context)? Navigator.pop(context):null;
+                           // FirebaseAuth.instance
+                      //     .createUserWithEmailAndPassword(
+                      //         email: ctrlEmail.text,
+                      //         password: ctrlPassword.text)
+                      //     .then((value) {
+                        // print("Created New Account");
+                        // Navigator.push(context,
+                        //     MaterialPageRoute(builder: (context) => Navbar()));
+                      // }).onError((error, stackTrace) {
+                      //   print("Error");
+                      // });
                     }
                   },
                 ),
@@ -225,5 +368,43 @@ class _registerState extends State<register> {
         ),
       ),
     );
+  }
+
+  Widget bottomSheet() {
+    return Container(
+        height: 100.0,
+        width: MediaQuery.of(context).size.width,
+        margin: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+        child: Column(
+          children: <Widget>[
+            const Text(
+              "Upload Gambar :",
+              style: TextStyle(
+                  fontFamily: "Poppins",
+                  fontWeight: FontWeight.w500,
+                  fontSize: 24),
+            ),
+            const SizedBox(
+              height: 15,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                TextButton.icon(
+                  icon: Icon(Icons.camera_alt_sharp),
+                  onPressed: () => pickImage(ImageSource.camera),
+                  style: TextButton.styleFrom(primary: Colors.black),
+                  label: Text("Kamera"),
+                ),
+                TextButton.icon(
+                  icon: Icon(Icons.broken_image_outlined),
+                  onPressed: () => pickImage(ImageSource.gallery),
+                  style: TextButton.styleFrom(primary: Colors.black),
+                  label: Text("Galeri"),
+                )
+              ],
+            )
+          ],
+        ));
   }
 }
