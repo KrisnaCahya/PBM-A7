@@ -34,12 +34,7 @@ class Order extends StatelessWidget {
                     ),
                     InkWell(
                         onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => PesanCam(),
-                            ),
-                          );
+                         Navigator.of(context).pop('Back');
                         },
                         child: const Text(
                           'Back',

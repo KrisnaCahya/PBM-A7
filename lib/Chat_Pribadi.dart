@@ -40,10 +40,7 @@ class _ChatPribadiState extends State<ChatPribadi> {
                 children: [
                   InkWell(
                     onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => Navbar()),
-                      );
+                      Navigator.of(context).pop('Back');
                     },
                     child: const Icon(
                       Icons.chevron_left_sharp,

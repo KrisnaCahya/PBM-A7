@@ -21,12 +21,7 @@ class PesanCam extends StatelessWidget {
                 padding: EdgeInsetsDirectional.fromSTEB(0, 15, 0, 15),
                 child: InkWell(
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Navbar(),
-                      ),
-                    );
+                    Navigator.of(context).pop('Back');
                   },
                   child: Row(
                     mainAxisSize: MainAxisSize.max,

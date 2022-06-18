@@ -45,14 +45,7 @@ class Pengaturan extends StatelessWidget {
                     ),
                     InkWell(
                         onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (_) {
-                                return Navbar();
-                              },
-                            ),
-                          );
+                          Navigator.of(context).pop('Back');
                         },
                         child: const Text(
                           'Pengaturan',

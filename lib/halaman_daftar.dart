@@ -329,18 +329,9 @@ class _registerState extends State<register> {
                             'Alamat':ctrlAlamat.text,
                             'userImage': imageUrl,
                           });
-                          Navigator.canPop(context)? Navigator.pop(context):null;
-                           // FirebaseAuth.instance
-                      //     .createUserWithEmailAndPassword(
-                      //         email: ctrlEmail.text,
-                      //         password: ctrlPassword.text)
-                      //     .then((value) {
-                        // print("Created New Account");
-                        // Navigator.push(context,
-                        //     MaterialPageRoute(builder: (context) => Navbar()));
-                      // }).onError((error, stackTrace) {
-                      //   print("Error");
-                      // });
+                        print("Created New Account");
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => Navbar()));
                     }
                   },
                 ),

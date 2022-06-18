@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:pbma7/data_pribadi.dart';
 import 'package:pbma7/pengaturan.dart';
@@ -11,6 +13,30 @@ class Akun extends StatefulWidget {
 }
 
 class _AkunState extends State<Akun> {
+  String? image = '';
+  String? nama = '';
+
+  Future _getDataFromDatabase() async {
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .get()
+        .then((snapshot) async {
+      if (snapshot.exists) {
+        setState(() {
+          image = snapshot.data()!['userImage'];
+          nama = snapshot.data()!['NamaLengkap'];
+        });
+      }
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _getDataFromDatabase();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,19 +62,13 @@ class _AkunState extends State<Akun> {
           children: [
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(30),
-                child: const Image(
-                  image: AssetImage("assets/images/profilpict.png"),
-                  width: 60,
-                  height: 60,
-                ),
-              ),
+              child: CircleAvatar(
+                  radius: 30, backgroundImage: NetworkImage(image!)),
             ),
-            const Padding(
+            Padding(
               padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
               child: Text(
-                'Zoya Amanda',
+                nama!,
                 style: TextStyle(
                   color: Colors.white,
                   fontFamily: "Poppins",
@@ -72,14 +92,16 @@ class _AkunState extends State<Akun> {
           tileColor: color1,
           trailing: IconButton(
               highlightColor: Colors.grey,
-              onPressed: () {Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) {
-                          return DataPribadi();
-                        },
-                      ),
-                    );},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) {
+                      return DataPribadi();
+                    },
+                  ),
+                );
+              },
               icon: const Icon(Icons.arrow_forward_ios_rounded,
                   color: Colors.white)),
         ),
@@ -99,13 +121,13 @@ class _AkunState extends State<Akun> {
               highlightColor: Colors.grey,
               onPressed: () {
                 Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) {
-                          return Pengaturan();
-                        },
-                      ),
-                    );
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) {
+                      return Pengaturan();
+                    },
+                  ),
+                );
               },
               icon: const Icon(Icons.arrow_forward_ios_rounded,
                   color: Colors.white)),

@@ -112,7 +112,7 @@ class _DaftarkanKameraState extends State<DaftarkanKamera> {
                           ),
                         ],
                       ),
-                      Padding(
+                      const Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                         child: Text('Alamat Lengkap',
                             style: TextStyle(
@@ -127,7 +127,7 @@ class _DaftarkanKameraState extends State<DaftarkanKamera> {
                         obscureText: false,
                         decoration: InputDecoration(
                           enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(
+                            borderSide: const BorderSide(
                               color: Color(0x00000000),
                               width: 1,
                             ),
