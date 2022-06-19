@@ -1,5 +1,6 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:pbma7/navbar.dart';
 import 'package:pbma7/style/style.dart';
 import 'package:pbma7/halaman_daftar.dart';
@@ -147,6 +148,8 @@ class _LoginState extends State<Login> {
                                   builder: (context) => Navbar()));
                         }).onError((error, stackTrace) {
                           print("Error");
+                          Fluttertoast.showToast(
+                                  msg: 'Akun Tidak Ditemukan');
                         });
                       }
                     }),

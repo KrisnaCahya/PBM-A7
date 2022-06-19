@@ -278,7 +278,7 @@ class _DaftarkanKameraState extends State<DaftarkanKamera> {
                                   .set({
                                 'FotoKamera': imageUrl,
                                 'ModelKamera': ctrlNamaCam.text,
-                                'Harga': ctrlHarga.hashCode,
+                                'Harga': ctrlHarga.text,
                                 'Deskripsi': ctrlDesk.text,
                                 'ProfilPict': image,
                                 'NamaToko': nama,
