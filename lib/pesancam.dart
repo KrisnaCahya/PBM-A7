@@ -53,8 +53,15 @@ class _PesanCamState extends State<PesanCam> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => Order(),
-            ),
+                builder: (context) => Order(
+                      Alamat,
+                      Deskripsi,
+                      FotoKamera,
+                      Harga,
+                      ModelKamera,
+                      NamaToko,
+                      ProfilPict,
+                    )),
           );
         },
         child: Container(
@@ -74,14 +81,14 @@ class _PesanCamState extends State<PesanCam> {
               Align(
                 alignment: AlignmentDirectional(0, -1),
                 child: ClipRRect(
-                            borderRadius: BorderRadius.circular(18),
-                            child: Image(
-                              image: NetworkImage(FotoKamera),
-                              width: double.infinity,
-                              height: 150,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
+                  borderRadius: BorderRadius.circular(18),
+                  child: Image(
+                    image: NetworkImage(FotoKamera),
+                    width: double.infinity,
+                    height: 150,
+                    fit: BoxFit.cover,
+                  ),
+                ),
               ),
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(5, 3, 0, 0),
