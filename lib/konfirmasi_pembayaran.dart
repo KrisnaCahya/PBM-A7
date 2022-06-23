@@ -9,7 +9,7 @@ class KonfirmasiPembayaran extends StatefulWidget {
 }
 
 class _KonfirmasiPembayaranState extends State<KonfirmasiPembayaran> {
-  DateTime date = DateTime(2022, 05, 20);
+  DateTime date = DateTime.now();
   @override
   Widget build(BuildContext context) {
     return Scaffold(

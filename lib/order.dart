@@ -163,36 +163,34 @@ class _OrderState extends State<Order> {
                                   fit: BoxFit.cover,
                                 ),
                               ),
-                              Padding(padding: EdgeInsetsDirectional.only(start: 10),
-                              child: 
-                              Text(
-                                _NamaToko,
-                                style: TextStyle(
-                                  fontFamily: 'Poppins',
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
+                              Padding(
+                                padding: EdgeInsetsDirectional.only(start: 10),
+                                child: Text(
+                                  _NamaToko,
+                                  style: TextStyle(
+                                    fontFamily: 'Poppins',
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
-                              ),),
+                              ),
                             ],
                           ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(100, 0, 0, 0),
-                            child: OutlinedButton(
-                                style: OutlinedButton.styleFrom(
-                                    primary: Colors.black,
-                                    side: const BorderSide(
-                                      color: Colors.black,
-                                      width: 1,
-                                    ),
-                                    textStyle: const TextStyle(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.normal,
-                                    )),
-                                onPressed: () {
-                                  print('Button pressed ...');
-                                },
-                                child: Text('Kunjungi Toko')),
-                          ),
+                          OutlinedButton(
+                              style: OutlinedButton.styleFrom(
+                                  primary: Colors.black,
+                                  side: const BorderSide(
+                                    color: Colors.black,
+                                    width: 1,
+                                  ),
+                                  textStyle: const TextStyle(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.normal,
+                                  )),
+                              onPressed: () {
+                                print('Button pressed ...');
+                              },
+                              child: Text('Kunjungi Toko')),
                         ],
                       ),
                       const Divider(
@@ -200,7 +198,8 @@ class _OrderState extends State<Order> {
                         color: Colors.black,
                       ),
                       Text('Deskripsi:\n' + _Deskripsi,
-                          style: TextStyle(fontFamily: 'Poppins', fontSize: 14)),
+                          style:
+                              TextStyle(fontFamily: 'Poppins', fontSize: 14)),
                       const Divider(
                         thickness: 1,
                         color: Colors.black,
@@ -243,7 +242,8 @@ class _OrderState extends State<Order> {
                                           5, 0, 0, 0),
                                       child: Text('Pak Kumis',
                                           style: TextStyle(
-                                              fontFamily: 'Poppins', fontSize: 14)),
+                                              fontFamily: 'Poppins',
+                                              fontSize: 14)),
                                     ),
                                   ],
                                 ),
