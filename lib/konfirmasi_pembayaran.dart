@@ -48,12 +48,7 @@ class _KonfirmasiPembayaranState extends State<KonfirmasiPembayaran> {
                               ),
                               InkWell(
                                 onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => Order(),
-                                    ),
-                                  );
+                                   Navigator.of(context).pop('Back');
                                 },
                                 child: const Text('Back',
                                     style: TextStyle(
