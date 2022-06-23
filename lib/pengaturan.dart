@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:pbma7/Akun.dart';
 import 'package:pbma7/halaman_utama.dart';
 import 'package:pbma7/navbar.dart';
-
+import 'package:pbma7/gantiakun.dart';
 
 class Pengaturan extends StatelessWidget {
   const Pengaturan({Key? key}) : super(key: key);
@@ -35,7 +35,7 @@ class Pengaturan extends StatelessWidget {
                   children: [
                     InkWell(
                       onTap: () {
-                         Navigator.of(context).pop('Back');
+                        Navigator.of(context).pop('Back');
                       },
                       child: const Icon(
                         Icons.chevron_left,
@@ -61,7 +61,7 @@ class Pengaturan extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(10, 50, 10, 0),
+              padding: EdgeInsetsDirectional.fromSTEB(10, 20, 10, 0),
               child: ListTile(
                 title: const Text(
                   'Ganti Akun',
@@ -70,16 +70,27 @@ class Pengaturan extends StatelessWidget {
                     fontSize: 16,
                   ),
                 ),
-                trailing: const Icon(
-                  Icons.arrow_forward_ios,
-                  color: Colors.black,
-                  size: 20,
-                ),
-                tileColor: Color(0xFF9E9E9E),
-                dense: false,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(25),
                 ),
+                tileColor: Color(0xFF9E9E9E),
+                trailing: IconButton(
+                    highlightColor: Colors.grey,
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) {
+                            return gantiakun();
+                          },
+                        ),
+                      );
+                    },
+                    icon: const Icon(
+                      Icons.arrow_forward_ios_rounded,
+                      color: Colors.black,
+                      size: 20,
+                    )),
               ),
             ),
             Padding(
@@ -126,7 +137,8 @@ class Pengaturan extends StatelessWidget {
                           builder: (context) => AlertDialog(
                                 actions: [
                                   TextButton(
-                                      onPressed: () {Navigator.pop(context);
+                                      onPressed: () {
+                                        Navigator.pop(context);
                                       },
                                       child: Text('Batal')),
                                   TextButton(

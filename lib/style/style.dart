@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 Color color1 = const Color(0xff1EBBDD);
+Color color2 = Color.fromARGB(255, 255, 255, 255);
 
 BorderRadius borderRadius1 = BorderRadius.circular(20);
 BorderRadius borderRadius2 = BorderRadius.circular(50);
