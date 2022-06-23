@@ -10,19 +10,43 @@ import 'package:pbma7/halaman_utama.dart';
 import 'package:pbma7/navbar.dart';
 import 'package:pbma7/pengaturan.dart';
 
-class gantiakun extends StatefulWidget {
-  const gantiakun({Key? key}) : super(key: key);
+class gantipassword extends StatefulWidget {
+  const gantipassword({Key? key}) : super(key: key);
 
   @override
-  State<gantiakun> createState() => _gantiakun();
+  State<gantipassword> createState() => _gantipassword();
 }
 
-class _gantiakun extends State<gantiakun> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+class _gantipassword extends State<gantipassword> {
+  final GlobalKey<FormState> _gantipasswordkey = GlobalKey<FormState>();
 
-  TextEditingController ctrlEmail = TextEditingController();
-  TextEditingController ctrlPassword = TextEditingController();
+  final ctrlPassword = TextEditingController();
+  final ctrlPassword2 = TextEditingController();
   bool isHiddenPassword = true;
+  bool isHiddenPassword2 = true;
+
+  var newPassword = " ";
+
+  final currentUser = FirebaseAuth.instance.currentUser;
+
+  @override
+  void dispose() {
+    ctrlPassword2.dispose();
+    super.dispose();
+  }
+
+  changepassword() async {
+    try {
+      await currentUser!.updatePassword(newPassword);
+      FirebaseAuth.instance.signOut();
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => halamanutama()));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        backgroundColor: Colors.white,
+        content: Text(' Your Password has been Changed...'),
+      ));
+    } catch (error) {}
+  }
 
   void _tooglePasswordView() {
     setState(() {
@@ -32,13 +56,16 @@ class _gantiakun extends State<gantiakun> {
 
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
+      backgroundColor: Colors.white,
+      body: Form(
+        autovalidateMode: AutovalidateMode.onUserInteraction,
+        key: _gantipasswordkey,
         child: Column(
           mainAxisSize: MainAxisSize.max,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 2, 0, 0),
+              padding: EdgeInsetsDirectional.fromSTEB(0, 40, 0, 0),
               child: Container(
                 width: 200,
                 height: 50,
@@ -69,7 +96,7 @@ class _gantiakun extends State<gantiakun> {
                           Navigator.of(context).pop('Back');
                         },
                         child: const Text(
-                          'Ganti Akun',
+                          'Ganti Password',
                           style: TextStyle(
                             fontFamily: 'Poppins',
                             color: Colors.white,
@@ -92,76 +119,8 @@ class _gantiakun extends State<gantiakun> {
                     offset: Offset(12, 26))
               ]),
               child: TextFormField(
-                controller: ctrlEmail,
-                validator: (email) =>
-                    email != null && !EmailValidator.validate(email)
-                        ? 'enter valid email'
-                        : null,
-                decoration: InputDecoration(
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: borderRadius1,
-                    borderSide: BorderSide(color: Color(0xFF9E9E9E)),
-                  ),
-                  fillColor: Color(0xFF9E9E9E),
-                  filled: true,
-                  hintText: 'example@gmail.com',
-                  labelText: 'Email Baru',
-                  prefixIcon: Icon(
-                    Icons.mail,
-                    color: color2,
-                  ),
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10)),
-                ),
-              ),
-            ),
-            Container(
-              padding: EdgeInsetsDirectional.fromSTEB(50, 20, 50, 0),
-              margin: const EdgeInsets.only(top: 0, bottom: 0),
-              decoration: const BoxDecoration(boxShadow: [
-                BoxShadow(
-                    color: Color.fromRGBO(90, 108, 234, 0.07),
-                    blurRadius: 50,
-                    spreadRadius: 0,
-                    offset: Offset(12, 26))
-              ]),
-              child: TextFormField(
-                controller: ctrlEmail,
-                validator: (email) =>
-                    email != null && !EmailValidator.validate(email)
-                        ? 'enter valid email'
-                        : null,
-                decoration: InputDecoration(
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(25),
-                    borderSide: BorderSide(color: Color(0xFF9E9E9E)),
-                  ),
-                  fillColor: Color(0xFF9E9E9E),
-                  filled: true,
-                  hintText: 'example@gmail.com',
-                  labelText: 'Email lama',
-                  prefixIcon: Icon(
-                    Icons.mail,
-                    color: color2,
-                  ),
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(25)),
-                ),
-              ),
-            ),
-            Container(
-              padding: EdgeInsetsDirectional.fromSTEB(50, 20, 50, 0),
-              margin: const EdgeInsets.only(top: 0, bottom: 0),
-              decoration: const BoxDecoration(boxShadow: [
-                BoxShadow(
-                    color: Color.fromRGBO(90, 108, 234, 0.07),
-                    blurRadius: 50,
-                    spreadRadius: 0,
-                    offset: Offset(12, 26))
-              ]),
-              child: TextFormField(
                 obscureText: isHiddenPassword,
-                controller: ctrlPassword,
+                controller: ctrlPassword2,
                 validator: (value) {
                   if (value != null && value.length < 6) {
                     return 'enter min 6 char';
@@ -177,7 +136,7 @@ class _gantiakun extends State<gantiakun> {
                   fillColor: Color(0xFF9E9E9E),
                   filled: true,
                   hintText: 'password123',
-                  labelText: 'Password',
+                  labelText: 'Kata Sandi Baru',
                   prefixIcon: Icon(
                     Icons.lock,
                     color: color2,
@@ -195,33 +154,23 @@ class _gantiakun extends State<gantiakun> {
               ),
             ),
             Container(
-              margin: const EdgeInsets.only(left: 250, top: 50, bottom: 10),
-              padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 20),
+              margin: const EdgeInsets.only(left: 80, top: 50, bottom: 10),
+              padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 70),
               decoration: BoxDecoration(
                   borderRadius: borderRadius1,
                   color: Color.fromRGBO(33, 150, 243, 1),
                   boxShadow: [boxshadow1]),
               child: TextButton(
                   child: const Text(
-                    'Simpan',
+                    'Ubah Kata Sandi',
                     style: TextStyle(color: Colors.white),
                   ),
                   onPressed: () {
-                    final isValidFrom = _formKey.currentState!.validate();
-                    if (isValidFrom) {
-                      FirebaseAuth.instance
-                          .signInWithEmailAndPassword(
-                              email: ctrlEmail.text,
-                              password: ctrlPassword.text)
-                          .then((value) {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => Pengaturan()));
-                      }).onError((error, stackTrace) {
-                        print("Error");
-                        Fluttertoast.showToast(msg: 'Akun Tidak Ditemukan');
+                    if (_gantipasswordkey.currentState!.validate()) {
+                      setState(() {
+                        newPassword = ctrlPassword2.text;
                       });
+                      changepassword();
                     }
                   }),
             ),

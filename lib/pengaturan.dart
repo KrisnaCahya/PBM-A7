@@ -4,6 +4,7 @@ import 'package:pbma7/Akun.dart';
 import 'package:pbma7/halaman_utama.dart';
 import 'package:pbma7/navbar.dart';
 import 'package:pbma7/gantiakun.dart';
+import 'package:pbma7/gantipassword.dart';
 
 class Pengaturan extends StatelessWidget {
   const Pengaturan({Key? key}) : super(key: key);
@@ -61,7 +62,7 @@ class Pengaturan extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(10, 20, 10, 0),
+              padding: EdgeInsetsDirectional.fromSTEB(50, 60, 50, 0),
               child: ListTile(
                 title: const Text(
                   'Ganti Akun',
@@ -94,7 +95,7 @@ class Pengaturan extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(10, 20, 10, 0),
+              padding: EdgeInsetsDirectional.fromSTEB(50, 10, 50, 0),
               child: ListTile(
                 title: const Text(
                   'Ganti Password',
@@ -103,20 +104,31 @@ class Pengaturan extends StatelessWidget {
                     fontSize: 16,
                   ),
                 ),
-                trailing: const Icon(
-                  Icons.arrow_forward_ios,
-                  color: Colors.black,
-                  size: 20,
-                ),
-                tileColor: Color(0xFF9E9E9E),
-                dense: false,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(25),
                 ),
+                tileColor: Color(0xFF9E9E9E),
+                trailing: IconButton(
+                    highlightColor: Colors.grey,
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) {
+                            return gantipassword();
+                          },
+                        ),
+                      );
+                    },
+                    icon: const Icon(
+                      Icons.arrow_forward_ios_rounded,
+                      color: Colors.black,
+                      size: 20,
+                    )),
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(10, 20, 10, 0),
+              padding: EdgeInsetsDirectional.fromSTEB(50, 10, 50, 0),
               child: ListTile(
                 title: const Text(
                   'logout',
