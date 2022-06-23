@@ -272,10 +272,13 @@ class _DaftarkanKameraState extends State<DaftarkanKamera> {
                                   .child(DateTime.now().toString() + '.jpg');
                               await ref.putFile(imageFile!);
                               imageUrl = await ref.getDownloadURL();
+                              final User? user = _auth.currentUser;
+                              final _uid = user!.uid;
                               FirebaseFirestore.instance
                                   .collection('camera')
                                   .doc(DateTime.now().toString())
                                   .set({
+                                'id': _uid,
                                 'FotoKamera': imageUrl,
                                 'ModelKamera': ctrlNamaCam.text,
                                 'Harga': ctrlHarga.text,
@@ -284,7 +287,7 @@ class _DaftarkanKameraState extends State<DaftarkanKamera> {
                                 'NamaToko': nama,
                                 'Alamat': alamat,
                               });
-                              print("Created New Account");
+                              print("Created New Camera");
                               Fluttertoast.showToast(
                                   msg: 'Kamera Berhasil Ditambahkan');
                             }

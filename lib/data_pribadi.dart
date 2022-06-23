@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:pbma7/editprofil.dart';
 
 class DataPribadi extends StatefulWidget {
   const DataPribadi({Key? key}) : super(key: key);
@@ -176,7 +177,14 @@ class _DataPribadiState extends State<DataPribadi> {
                       style: ElevatedButton.styleFrom(
                         primary: Color(0xff1EBBDD), // background/ foreground
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                       Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => EditProfil(),
+                            ),
+                          );
+                      },
                       child: Text(
                         'Edit',
                         style: TextStyle(
