@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:pbma7/order.dart';
+import 'package:pbma7/editdatakamera.dart';
 
 class TokoSaya extends StatefulWidget {
   const TokoSaya({Key? key}) : super(key: key);
@@ -56,20 +57,15 @@ class _TokoSayaState extends State<TokoSaya> {
           Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => Order(
-                      Alamat,
-                      Deskripsi,
-                      FotoKamera,
-                      Harga,
-                      ModelKamera,
-                      NamaToko,
-                      ProfilPict,
-                    )),
+              builder: (_) {
+                return EditKamera();
+              },
+            ),
           );
         },
         child: Container(
           width: double.infinity,
-          height: 255,
+          height: 270,
           decoration: BoxDecoration(
             color: Color(0xFFEEEEEE),
             borderRadius: BorderRadius.circular(18),
@@ -137,6 +133,23 @@ class _TokoSayaState extends State<TokoSaya> {
                     fontWeight: FontWeight.normal,
                   ),
                 ),
+              ),
+              Align(
+                alignment: AlignmentDirectional(0, 0),
+                child: Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(250, 0, 0, 0),
+                    child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          primary: Color(0xff1EBBDD), // background/ foreground
+                        ),
+                        onPressed: () {},
+                        child: Text(
+                          'Edit',
+                          style: TextStyle(
+                              fontFamily: 'Poppins',
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold),
+                        ))),
               ),
             ],
           ),
