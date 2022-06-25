@@ -2,7 +2,7 @@
     package="com.example.pbma7">
     <uses-permission android:name="android.permission.INTERNET"/>
    <application
-        android:label="pbma7"
+        android:label="RCM"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
