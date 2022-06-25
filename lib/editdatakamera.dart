@@ -189,7 +189,7 @@ class _EditKameraState extends State<EditKamera> {
                   ],
                 ),
                 Text(
-                  'Daftarkan Kamera',
+                  'Ubah Data Kamera',
                   style: TextStyle(
                       fontFamily: 'Poppins',
                       fontSize: 25,
