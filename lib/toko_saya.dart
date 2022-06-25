@@ -138,39 +138,6 @@ class _TokoSayaState extends State<TokoSaya> {
                   ),
                 ),
               ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(3, 0, 0, 0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: const [
-                    Icon(
-                      Icons.star_sharp,
-                      color: Colors.black,
-                      size: 24,
-                    ),
-                    Icon(
-                      Icons.star_sharp,
-                      color: Colors.black,
-                      size: 24,
-                    ),
-                    Icon(
-                      Icons.star_sharp,
-                      color: Colors.black,
-                      size: 24,
-                    ),
-                    Icon(
-                      Icons.star_half,
-                      color: Colors.black,
-                      size: 24,
-                    ),
-                    Icon(
-                      Icons.star_outline,
-                      color: Colors.black,
-                      size: 24,
-                    ),
-                  ],
-                ),
-              ),
             ],
           ),
         ),
@@ -246,6 +213,8 @@ class _TokoSayaState extends State<TokoSaya> {
               StreamBuilder<QuerySnapshot>(
                   stream: FirebaseFirestore.instance
                       .collection('camera')
+                      .where("id",
+                          isEqualTo: FirebaseAuth.instance.currentUser!.uid)
                       .snapshots(),
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
