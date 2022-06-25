@@ -36,6 +36,96 @@ class _EditKameraState extends State<EditKamera> {
   String? nama;
   String? alamat;
 
+  updateNamaDataCamera() async {
+    await FirebaseFirestore.instance
+        .collection('camera')
+        .where("id", isEqualTo: FirebaseAuth.instance.currentUser!.uid)
+        .get()
+        .then((snapshot) {
+      for (int index = 0; index < snapshot.docs.length; index++) {
+        String ProfilPictInCamera = snapshot.docs[index]['FotoKamera'];
+        if (ProfilPictInCamera != imageUrl) {
+          FirebaseFirestore.instance
+              .collection('camera')
+              .doc(snapshot.docs[index].id)
+              .update({'FotoKamera': imageUrl});
+        }
+      }
+    });
+  }
+
+  updateNameInDataCamera() async {
+    await FirebaseFirestore.instance
+        .collection('camera')
+        .where("id", isEqualTo: FirebaseAuth.instance.currentUser!.uid)
+        .get()
+        .then((snapshot) {
+      for (int index = 0; index < snapshot.docs.length; index++) {
+        String NameInCamera = snapshot.docs[index]['ModelCamera'];
+        if (NameInCamera != ctrlNamaCam.text) {
+          FirebaseFirestore.instance
+              .collection('camera')
+              .doc(snapshot.docs[index].id)
+              .update({'ModelCamera': ctrlNamaCam.text});
+        }
+      }
+    });
+  }
+
+  updateHargaInDataCamera() async {
+    await FirebaseFirestore.instance
+        .collection('camera')
+        .where("id", isEqualTo: FirebaseAuth.instance.currentUser!.uid)
+        .get()
+        .then((snapshot) {
+      for (int index = 0; index < snapshot.docs.length; index++) {
+        String HargaInCamera = snapshot.docs[index]['Harga'];
+        if (HargaInCamera != ctrlHarga.text) {
+          FirebaseFirestore.instance
+              .collection('camera')
+              .doc(snapshot.docs[index].id)
+              .update({'Harga': ctrlHarga.text});
+        }
+      }
+    });
+  }
+
+  updateDeksInDataCamera() async {
+    await FirebaseFirestore.instance
+        .collection('camera')
+        .where("id", isEqualTo: FirebaseAuth.instance.currentUser!.uid)
+        .get()
+        .then((snapshot) {
+      for (int index = 0; index < snapshot.docs.length; index++) {
+        String DeksInCamera = snapshot.docs[index]['Deskirpsi'];
+        if (DeksInCamera != ctrlDesk.text) {
+          FirebaseFirestore.instance
+              .collection('camera')
+              .doc(snapshot.docs[index].id)
+              .update({'Deskirpsi': ctrlDesk.text});
+        }
+      }
+    });
+  }
+
+  updateAlamatInDataCamera() async {
+    await FirebaseFirestore.instance
+        .collection('camera')
+        .where("id", isEqualTo: FirebaseAuth.instance.currentUser!.uid)
+        .get()
+        .then((snapshot) {
+      for (int index = 0; index < snapshot.docs.length; index++) {
+        String AlamatInCamera = snapshot.docs[index]['Alamat'];
+        if (AlamatInCamera != alamat) {
+          FirebaseFirestore.instance
+              .collection('camera')
+              .doc(snapshot.docs[index].id)
+              .update({'Alamat': alamat});
+        }
+      }
+    });
+  }
+
   void _getDataFromDatabase() async {
     await FirebaseFirestore.instance
         .collection('users')
@@ -275,21 +365,23 @@ class _EditKameraState extends State<EditKamera> {
                               final User? user = _auth.currentUser;
                               final _uid = user!.uid;
                               FirebaseFirestore.instance
-                                  .collection('camera')
-                                  .doc(DateTime.now().toString())
-                                  .set({
-                                'id': _uid,
+                                  .collection('users')
+                                  .doc(_uid)
+                                  .update({
                                 'FotoKamera': imageUrl,
                                 'ModelKamera': ctrlNamaCam.text,
                                 'Harga': ctrlHarga.text,
                                 'Deskripsi': ctrlDesk.text,
-                                'ProfilPict': image,
-                                'NamaToko': nama,
                                 'Alamat': alamat,
                               });
-                              print("Created New Camera");
+                              updateHargaInDataCamera();
+                              updateDeksInDataCamera();
+                              updateNameInDataCamera();
+                              updateNamaDataCamera();
+                              updateAlamatInDataCamera;
+                              print("Created New Data Camera");
                               Fluttertoast.showToast(
-                                  msg: 'Kamera Berhasil Ditambahkan');
+                                  msg: 'Kamera Berhasil Diubah');
                             }
                           },
                           child: Text(
